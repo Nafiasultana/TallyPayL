@@ -24,30 +24,63 @@ public class LoginTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         // Enter username
-        WebElement usernameInput = driver.findElement(By.id("username"));
-        usernameInput.sendKeys("your_username");
+        WebElement usernameInput = driver.findElement(By.xpath("//input[@placeholder='Enter username']"));
+        usernameInput.isDisplayed();
+        usernameInput.isEnabled();
+        usernameInput.sendKeys("rudhvi89");
 
         // Enter password
-        WebElement passwordInput = driver.findElement(By.id("password"));
-        passwordInput.sendKeys("your_password");
+        WebElement passwordInput = driver.findElement(By.xpath("//input[@placeholder='Enter password']"));
+        passwordInput.isDisplayed();
+        passwordInput.isEnabled();
+        passwordInput.sendKeys("Lulu007!!!!!!!!!");
 
         // Login button
-        WebElement loginButton = driver.findElement(By.xpath("//button[contains(text(),'Login')]"));
+        WebElement loginButton = driver.findElement(By.xpath("//button[normalize-space()='LOGIN']"));
+        loginButton.isDisplayed();
+        loginButton.isEnabled();
         loginButton.click();
 
         // Wait for OTP input field
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         // Enter OTP
-        WebElement otpInput = driver.findElement(By.id("otp"));
-        otpInput.sendKeys("your_otp");
+        WebElement otpInput = driver.findElement(By.xpath("//form[@class='login-form']//input[@placeholder='Enter OTP']"));
+        otpInput.isDisplayed();
+        otpInput.isEnabled();
+        otpInput.sendKeys("123456");
 
         // Submit button for OTP
-        WebElement submitButton = driver.findElement(By.xpath("//button[contains(text(),'Submit')]"));
+        WebElement submitButton = driver.findElement(By.xpath("//button[normalize-space()='SUBMIT']"));
+        submitButton.isDisplayed();
+        submitButton.isEnabled();
         submitButton.click();
 
         // Wait for the login process to complete
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
+        WebElement Homepage = driver.findElement(By.id("Homepage"));
+        String Activvalues = Homepage.getText();
+        String Expectedvalues = "Home Page";
+
+        // Accounts
+        WebElement Accounts = driver.findElement(By.xpath("//button[normalize-space()='ACCOUNTS']"));
+        Accounts.isDisplayed();
+        Accounts.isEnabled();
+        Accounts.click();
+
+        // Give Wallet Number
+        WebElement otpInput = driver.findElement(By.xpath("//form[@class='login-form']//input[@placeholder='Enter OTP']"));
+        otpInput.isDisplayed();
+        otpInput.isEnabled();
+        otpInput.sendKeys("01959508016");
+
+        // Wait for the login process to complete
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
+        WebElement Accountsdetails = driver.findElement(By.id("Accountsdetails"));
+        String values = Accountsdetails.getText();
+        String givenvalues = "Accountsdetails";
 
         // Close the browser
         driver.quit();
